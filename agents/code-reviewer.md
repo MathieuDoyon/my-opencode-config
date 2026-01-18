@@ -153,6 +153,7 @@ Before reviewing, identify the languages/frameworks in the code and load relevan
 | `.css`, `.scss` | `css-container-queries` |
 | Any with Tailwind | `code-architecture-tailwind-v4-best-practices` |
 | Any refactoring | `code-architecture-wrong-abstraction` |
+| Any code | `naming-cheatsheet` (for naming convention review) |
 
 **How:** Use the `Skill` tool to load relevant skills during initial triage, then apply those best practices during review.
 
