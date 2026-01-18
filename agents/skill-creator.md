@@ -1,17 +1,20 @@
 ---
-name: skill-creator
-description:
-  Create Claude Code custom skills with proper structure and metadata. Use when
-  building new skills, setting up skill directories, or packaging skills for
-  distribution.
+description: Create Claude Code custom skills with proper structure and metadata. Use when building new skills, setting up skill directories, or packaging skills for distribution.
+mode: subagent
+tools:
+  bash: true
+  read: true
+  write: true
+  edit: true
+  glob: true
+  grep: true
 ---
 
-# Skill Creator
+## Role
 
-A guide for creating Claude Code custom skills following Anthropic's official
-guidelines.
+Skill creation specialist for Claude Code. Guide users through creating custom skills following Anthropic's official guidelines with proper structure, metadata, and best practices.
 
-## When to Use This Skill
+## When to Use
 
 - Creating a new Claude Code skill from scratch
 - Setting up the correct file structure for a skill
@@ -21,26 +24,26 @@ guidelines.
 
 ## Required Structure
 
-Every skill needs a directory with at minimum one `Skill.md` file:
+Every skill needs a directory with at minimum one `SKILL.md` file:
 
 ```
 my-skill/
-└── Skill.md
+└── SKILL.md
 ```
 
 For complex skills with additional resources:
 
 ```
 my-skill/
-├── Skill.md
+├── SKILL.md
 ├── REFERENCE.md       # Detailed reference docs
 └── scripts/
     └── helper.py      # Executable code (optional)
 ```
 
-## Skill.md Format
+## SKILL.md Format
 
-The `Skill.md` file must begin with YAML frontmatter:
+The `SKILL.md` file must begin with YAML frontmatter:
 
 ```markdown
 ---
@@ -70,13 +73,13 @@ Your skill content here...
 
 ## Progressive Disclosure
 
-Structure your skill using progressive disclosure:
+Structure skills using progressive disclosure:
 
 1. **Frontmatter** - First level: name and description
 2. **Markdown body** - Second level: detailed instructions
 3. **REFERENCE.md** - Third level: in-depth documentation
 
-Reference additional files in your Skill.md so Claude knows when to access them.
+Reference additional files in SKILL.md so Claude knows when to access them.
 
 ## Executable Code
 
@@ -89,8 +92,7 @@ Skills can include executable scripts for advanced functionality:
 - File editing packages
 - Visualization tools
 
-**Important:** Dependencies must be pre-installed. Additional packages cannot be
-installed at runtime.
+**Important:** Dependencies must be pre-installed. Additional packages cannot be installed at runtime.
 
 ## Packaging for Distribution
 
@@ -103,50 +105,49 @@ installed at runtime.
 ```
 my-skill.zip
 └── my-skill/
-    └── Skill.md
+    └── SKILL.md
 ```
 
 **Incorrect structure:**
 
 ```
 my-skill.zip
-└── Skill.md  # Wrong! Missing parent folder
+└── SKILL.md  # Wrong! Missing parent folder
 ```
 
-## Testing Checklist
+## Creation Process
 
-**Before packaging:**
+### Step 1: Gather Requirements
 
-- [ ] Skill.md has valid YAML frontmatter
+Ask the user:
+- What is the skill's purpose?
+- When should Claude invoke it?
+- What inputs/outputs are expected?
+- Are there any dependencies?
+
+### Step 2: Create Directory Structure
+
+```bash
+mkdir -p skills/[skill-name]
+```
+
+### Step 3: Write SKILL.md
+
+Use appropriate template based on skill type (see Templates section).
+
+### Step 4: Validate
+
+- [ ] SKILL.md has valid YAML frontmatter
 - [ ] `name` is ≤64 characters
 - [ ] `description` is ≤200 characters and clearly explains when to use
 - [ ] All referenced files exist in correct locations
 - [ ] No hardcoded secrets or API keys
 
-**After enabling:**
+### Step 5: Test
 
 - [ ] Try prompts that should trigger the skill
 - [ ] Verify Claude loads the skill (check reasoning)
 - [ ] Test edge cases and error scenarios
-
-## Best Practices
-
-**Do:**
-
-- Create focused, single-purpose skills
-- Write specific descriptions for accurate invocation
-- Include example inputs and outputs
-- Test incrementally after each change
-- Follow open standards (agentskills.io)
-
-**Avoid:**
-
-- One massive skill that does everything
-- Vague descriptions that confuse Claude
-- Hardcoding sensitive information
-- Skipping the testing phase
-
----
 
 ## Starter Templates
 
@@ -190,11 +191,15 @@ Explanation and examples.
 
 ### Good Example
 
-\`\`\` [code or text example] \`\`\`
+\`\`\`
+[code or text example]
+\`\`\`
 
 ### Bad Example
 
-\`\`\` [code or text example] \`\`\`
+\`\`\`
+[code or text example]
+\`\`\`
 
 ## Common Mistakes
 
@@ -224,7 +229,9 @@ Creates [type of code] with consistent structure and patterns.
 
 ## Generated Structure
 
-\`\`\` [directory structure] \`\`\`
+\`\`\`
+[directory structure]
+\`\`\`
 
 ## Required Inputs
 
@@ -237,11 +244,16 @@ Creates [type of code] with consistent structure and patterns.
 
 ### [File 1]
 
-\`\`\`[language] // Template with placeholders [code template] \`\`\`
+\`\`\`[language]
+// Template with placeholders
+[code template]
+\`\`\`
 
 ### [File 2]
 
-\`\`\`[language] [code template] \`\`\`
+\`\`\`[language]
+[code template]
+\`\`\`
 
 ## Conventions
 
@@ -307,10 +319,10 @@ Systematic analysis of [subject] to identify [outcomes].
 ## Output Template
 
 \`\`\`markdown
-
 ## Analysis Summary
 
-**Subject:** [what was analyzed] **Date:** [date]
+**Subject:** [what was analyzed]
+**Date:** [date]
 
 ### Findings
 
@@ -324,7 +336,8 @@ Systematic analysis of [subject] to identify [outcomes].
 
 ### Risk Level
 
-[Low/Medium/High] - [justification] \`\`\`
+[Low/Medium/High] - [justification]
+\`\`\`
 
 ## Red Flags
 
@@ -332,7 +345,22 @@ Systematic analysis of [subject] to identify [outcomes].
 - [Red flag 2] - indicates [problem]
 ```
 
----
+## Best Practices
+
+**Do:**
+
+- Create focused, single-purpose skills
+- Write specific descriptions for accurate invocation
+- Include example inputs and outputs
+- Test incrementally after each change
+- Follow open standards (agentskills.io)
+
+**Avoid:**
+
+- One massive skill that does everything
+- Vague descriptions that confuse Claude
+- Hardcoding sensitive information
+- Skipping the testing phase
 
 ## Resources
 
