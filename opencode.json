@@ -11,9 +11,9 @@
       "enabled": true
     },
     "figma-mcp-dektop": {
-       "type": "remote",
-       "url": "http://127.0.0.1:3845/mcp"
-     }
+      "type": "remote",
+      "url": "http://127.0.0.1:3845/mcp"
+    }
   },
   "provider": {
     "ollama": {
@@ -23,10 +23,10 @@
         "baseURL": "http://localhost:11434/v1"
       },
       "models": {
-      "qwen3-vl:8b": {
-        "name": "qwen3-vl:8b"
+        "qwen3-vl:8b": {
+          "name": "qwen3-vl:8b"
+        }
       }
-    }
     }
   }
 }
