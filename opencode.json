@@ -18,7 +18,7 @@
   "provider": {
     "ollama": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "Ollama (local)",
+      "name": "Ollama",
       "options": {
         "baseURL": "http://localhost:11434/v1"
       },
@@ -28,6 +28,12 @@
         },
         "hoangquan456/qwen3-nothink:8b": {
           "name": "hoangquan456/qwen3-nothink:8b"
+        },
+        "minimax-m2.5:cloud": {
+          "name": "minimax-m2.5:cloud"
+        },
+        "glm-5:cloud": {
+          "name": "glm-5:cloud"
         }
       }
     }
